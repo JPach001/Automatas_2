@@ -1,0 +1,15 @@
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\bin\Debug\net7.0\Sintáxis_2.exe
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\bin\Debug\net7.0\Sintáxis_2.deps.json
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\bin\Debug\net7.0\Sintáxis_2.runtimeconfig.json
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\bin\Debug\net7.0\Sintáxis_2.dll
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\bin\Debug\net7.0\Sintáxis_2.pdb
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\obj\Debug\net7.0\Sintáxis_2.csproj.AssemblyReference.cache
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\obj\Debug\net7.0\Sintáxis_2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\obj\Debug\net7.0\Sintáxis_2.AssemblyInfoInputs.cache
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\obj\Debug\net7.0\Sintáxis_2.AssemblyInfo.cs
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\obj\Debug\net7.0\Sintáxis_2.csproj.CoreCompileInputs.cache
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\obj\Debug\net7.0\Sintáxis_2.dll
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\obj\Debug\net7.0\refint\Sintáxis_2.dll
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\obj\Debug\net7.0\Sintáxis_2.pdb
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\obj\Debug\net7.0\Sintáxis_2.genruntimeconfig.cache
+C:\Users\Usuario Microsoft\Documents\Autómatas2\Sintáxis_2\obj\Debug\net7.0\ref\Sintáxis_2.dll
