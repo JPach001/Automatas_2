@@ -221,10 +221,18 @@ namespace Sintaxis_2
                 if (getContenido() == "++")
                 {
                     match("++");
+                    float V = getValor(variable);
+                    V++;
+                    Modifica(variable, V);
+                    stack.Push(V);
                 }
                 else
                 {
                     match("--");
+                    float V = getValor(variable);
+                    V--;
+                    Modifica(variable, V);
+                    stack.Push(V);
                 }
             }
             else if (getClasificacion() == Tipos.IncrementoFactor)
@@ -233,24 +241,49 @@ namespace Sintaxis_2
                 if (getContenido() == "+=")
                 {
                     match("+=");
+                    Expresion();
+                    float V = getValor(variable);
+                    V += stack.Pop();
+                    Modifica(variable, V);
+                    stack.Push(V);
+                    
                 }
                 else if (getContenido() == "-=")
                 {
                     match("-=");
+                    Expresion();
+                    float V = getValor(variable);
+                    V -= stack.Pop();
+                    Modifica(variable, V);
+                    stack.Push(V);
                 }
                 else if (getContenido() == "*=")
                 {
                     match("*=");
+                    Expresion();
+                    float V = getValor(variable);
+                    V *= stack.Pop();
+                    Modifica(variable, V);
+                    stack.Push(V);
                 }
                 else if (getContenido() == "/=")
                 {
                     match("/=");
+                    Expresion();
+                    float V = getValor(variable);
+                    V /= stack.Pop();
+                    Modifica(variable, V);
+                    stack.Push(V);
                 }
                 else if (getContenido() == "%=")
                 {
                     match("%=");
+                    Expresion();
+                    float V = getValor(variable);
+                    V %= stack.Pop();
+                    Modifica(variable, V);
+                    stack.Push(V);
                 }
-                Expresion();
             }
             float resultado = stack.Pop();
             log.WriteLine(" = " + resultado);
@@ -375,6 +408,10 @@ namespace Sintaxis_2
                 {
                     BloqueInstrucciones(ejecuta);
                 }
+                else if (getContenido() == "if")
+                {
+                    If(ejecuta);
+                }
                 else
                 {
                     Instruccion(ejecuta);
@@ -389,7 +426,11 @@ namespace Sintaxis_2
             match("(");
             if (ejecuta)
             {
-                Console.Write(getContenido());
+                String imprime = getContenido();
+                imprime = imprime.Replace("\\t", "\t");
+                imprime = imprime.Replace("\\n", "\n");
+                imprime = imprime.Replace('"','\0');
+                Console.Write(imprime);
             }
             match(Tipos.Cadena);
             if (getContenido() == ",")
@@ -400,6 +441,7 @@ namespace Sintaxis_2
                     throw new Error("de sintaxis, la variable <" + getContenido() + "> no está declarada", log, linea, columna);
                 }
                 match(Tipos.Identificador);
+
             }
             match(")");
             match(";");
@@ -477,9 +519,11 @@ namespace Sintaxis_2
                 float R2 = stack.Pop();
                 float R1 = stack.Pop();
                 if (operador == "*")
-                    stack.Push(R1*R2);
+                    stack.Push(R1 * R2);
+                else if (operador == "%")
+                    stack.Push(R1 % R2);
                 else
-                    stack.Push(R1/R2);
+                    stack.Push(R1 / R2);
             }
         }
         //Factor -> numero | identificador | (Expresion)

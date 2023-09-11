@@ -10,7 +10,7 @@ void main() // Funcion principal
     b=8;
     printf("Valor de c = ",c);
     scanf("%f",&c);
-    if (c%2==0)
+    if (c==0)
     {
         printf("\nc es par\t\tITQ");
         if (c==10)

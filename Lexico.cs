@@ -32,8 +32,8 @@ namespace Sintaxis_2
             { F, F, F, F,16, F, F, F, F,16, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F}, // 14
             { F, F, F, F, 6, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F}, // 15
             { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F}, // 16
-            { F, F, F, F,19, F, F, F, F, F, F, F,19, F, F, F, F, F, F, F, F, F, F, F, F, F}, // 17
-            { F, F, F, F,19, F, F, F, F, F, F, F, F,19, F, F, F, F, F, F, F, F, F, F, F, F}, // 18
+            { F, F, F, F,21, F, F, F, F, F, F, F,19, F, F, F, F, F, F, F, F, F, F, F, F, F}, // 17
+            { F, F, F, F,21, F, F, F, F, F, F, F, F,19, F, F, F, F, F, F, F, F, F, F, F, F}, // 18
             { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F}, // 19
             { F, F, F, F,21, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F}, // 20
             { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F}, // 21
