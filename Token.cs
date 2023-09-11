@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sintáxis_2
+namespace Sintaxis_2
 {
     public class Token
     {

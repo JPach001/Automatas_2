@@ -62,10 +62,11 @@ namespace Sintaxis_2
         protected int columna;
         public Lexico()
         {
+            DateTime myValue = DateTime.Now;
             linea = columna = 1;
             log = new StreamWriter("prueba.log");
-            log.WriteLine("Autor: Guillermo Fernandez Romero");
-            log.WriteLine("Fecha: 3-Mayo-2023 15:09");
+            log.WriteLine("Autor: Julián Andrés Pacheco García");
+            log.WriteLine(myValue.ToShortDateString() + " " + myValue.ToLongTimeString());
             log.AutoFlush = true;
             if (File.Exists("prueba.cpp"))
             {
@@ -78,10 +79,11 @@ namespace Sintaxis_2
         }
         public Lexico(string nombre)
         {
+            DateTime myValue = DateTime.Now;
             linea = columna = 1;
             log = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".log");
-            log.WriteLine("Autor: Guillermo Fernandez Romero");
-            log.WriteLine("Fecha: 3-Mayo-2023 15:09");
+            log.WriteLine("Autor: Julián Andrés Pacheco García");
+            log.WriteLine(myValue.ToShortDateString() + " " + myValue.ToLongTimeString());
             log.AutoFlush = true;
             if (Path.GetExtension(nombre) != ".cpp")
             {

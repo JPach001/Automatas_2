@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario Microsoft\\Documents\\Autómatas2\\Sintáxis_2\\Sintáxis_2.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario Microsoft\\Documents\\Universidad\\Semestre 5\\Autómatas2\\Sintáxis_2\\Sintáxis_2.csproj",
       "projectName": "Sintáxis_2",
-      "projectPath": "C:\\Users\\Usuario Microsoft\\Documents\\Autómatas2\\Sintáxis_2\\Sintáxis_2.csproj",
+      "projectPath": "C:\\Users\\Usuario Microsoft\\Documents\\Universidad\\Semestre 5\\Autómatas2\\Sintáxis_2\\Sintáxis_2.csproj",
       "packagesPath": "C:\\Users\\Usuario Microsoft\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario Microsoft\\Documents\\Autómatas2\\Sintáxis_2\\obj\\",
+      "outputPath": "C:\\Users\\Usuario Microsoft\\Documents\\Universidad\\Semestre 5\\Autómatas2\\Sintáxis_2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Usuario Microsoft\\AppData\\Roaming\\NuGet\\NuGet.Config"
