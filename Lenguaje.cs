@@ -406,15 +406,11 @@ namespace Sintaxis_2
 
                 if (getContenido() == "{")
                 {
-                    BloqueInstrucciones(ejecuta);
-                }
-                else if (getContenido() == "if")
-                {
-                    If(ejecuta);
+                    BloqueInstrucciones(!evaluacion);
                 }
                 else
                 {
-                    Instruccion(ejecuta);
+                    Instruccion(!evaluacion);
                 }
             }
 
@@ -441,7 +437,9 @@ namespace Sintaxis_2
                     throw new Error("de sintaxis, la variable <" + getContenido() + "> no está declarada", log, linea, columna);
                 }
                 String var = getContenido();
-                Console.Write(getValor(var)); 
+                if (ejecuta)
+                    Console.Write(getValor(var)); 
+
                 match(Tipos.Identificador);
 
             }
