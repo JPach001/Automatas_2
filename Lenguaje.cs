@@ -463,8 +463,15 @@ namespace Sintaxis_2
             if (ejecuta)
             {
                 string captura = "" + Console.ReadLine();
-                float resultado = float.Parse(captura);
-                Modifica(variable,resultado);
+                if (captura.All(char.IsDigit))
+                {
+                    float resultado = float.Parse(captura);
+                    Modifica(variable,resultado);
+                }
+                else
+                {
+                    throw new Error("de sintáxis, se espera un valor numérico",log,linea,columna);
+                }
             }
             match(")");
             match(";");
