@@ -441,7 +441,6 @@ namespace Sintaxis_2
                     throw new Error("de sintaxis, la variable <" + getContenido() + "> no está declarada", log, linea, columna);
                 }
                 match(Tipos.Identificador);
-
             }
             match(")");
             match(";");
@@ -548,6 +547,7 @@ namespace Sintaxis_2
                 {
                     throw new Error("de sintaxis, la variable <" + getContenido() + "> no está declarada", log, linea, columna);
                 }
+                stack.Push(getValor(getContenido()));
                 match(Tipos.Identificador);
             }
             else
