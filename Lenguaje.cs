@@ -180,7 +180,7 @@ namespace Sintaxis_2
             {
                 Scanf(ejecuta);
             }
-             else if (getContenido() == "if")
+            else if (getContenido() == "if")
             {
                 If(ejecuta);
             }
@@ -246,7 +246,7 @@ namespace Sintaxis_2
                     V += stack.Pop();
                     Modifica(variable, V);
                     stack.Push(V);
-                    
+
                 }
                 else if (getContenido() == "-=")
                 {
@@ -289,7 +289,7 @@ namespace Sintaxis_2
             log.WriteLine(" = " + resultado);
             if (ejecuta)
             {
-                Modifica(variable,resultado);
+                Modifica(variable, resultado);
             }
             match(";");
         }
@@ -376,12 +376,12 @@ namespace Sintaxis_2
 
             switch (operador)
             {
-                case "==" : return R2==R1;
-                case ">"  : return R2>R1;
-                case ">=" : return R2>=R1;
-                case "<"  : return R2<R1;
-                case "<=" : return R2<=R1;
-                default   : return R2!=R1;
+                case "==": return R2 == R1;
+                case ">": return R2 > R1;
+                case ">=": return R2 >= R1;
+                case "<": return R2 < R1;
+                case "<=": return R2 <= R1;
+                default: return R2 != R1;
             }
         }
         //If -> if (Condicion) BloqueInstrucciones | Instruccion (else BloqueInstrucciones | Instruccion)?
@@ -389,7 +389,8 @@ namespace Sintaxis_2
         {
             match("if");
             match("(");
-            bool evaluacion = Condicion() && ejecuta;
+            bool condicionalElse = Condicion();
+            bool evaluacion = condicionalElse && ejecuta;
             Console.WriteLine(evaluacion);
             match(")");
             if (getContenido() == "{")
@@ -406,11 +407,11 @@ namespace Sintaxis_2
 
                 if (getContenido() == "{")
                 {
-                    BloqueInstrucciones(!evaluacion);
+                    BloqueInstrucciones(!condicionalElse && ejecuta);
                 }
                 else
                 {
-                    Instruccion(!evaluacion);
+                    Instruccion(!condicionalElse && ejecuta);
                 }
             }
 
@@ -425,7 +426,7 @@ namespace Sintaxis_2
                 String imprime = getContenido();
                 imprime = imprime.Replace("\\t", "\t");
                 imprime = imprime.Replace("\\n", "\n");
-                imprime = imprime.Replace('"','\0');
+                imprime = imprime.Replace('"', '\0');
                 Console.Write(imprime);
             }
             match(Tipos.Cadena);
@@ -438,7 +439,7 @@ namespace Sintaxis_2
                 }
                 String var = getContenido();
                 if (ejecuta)
-                    Console.Write(getValor(var)); 
+                    Console.Write(getValor(var));
 
                 match(Tipos.Identificador);
 
@@ -466,11 +467,11 @@ namespace Sintaxis_2
                 if (captura.All(char.IsDigit))
                 {
                     float resultado = float.Parse(captura);
-                    Modifica(variable,resultado);
+                    Modifica(variable, resultado);
                 }
                 else
                 {
-                    throw new Error("de sintáxis, se espera un valor numérico",log,linea,columna);
+                    throw new Error("de sintáxis, se espera un valor numérico", log, linea, columna);
                 }
             }
             match(")");
@@ -503,9 +504,9 @@ namespace Sintaxis_2
                 float R2 = stack.Pop();
                 float R1 = stack.Pop();
                 if (operador == "+")
-                    stack.Push(R1+R2);
+                    stack.Push(R1 + R2);
                 else
-                    stack.Push(R1-R2);
+                    stack.Push(R1 - R2);
             }
         }
         //Termino -> Factor PorFactor
