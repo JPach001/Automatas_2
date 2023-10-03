@@ -15,6 +15,15 @@ using System.Threading.Tasks;
     Requerimiento 4: Implemenar la ejecución del ELSE
 */
 
+/*
+    Requerimiento 1: Implementar la ejecucion del while
+    Requerimiento 2: Implemenatr la ejecicion del do - whike
+    Requerimiento 3: Implementar la ejecucion del for
+    Requerimiento 4: Marcar errores semánticos
+    Requerimiento 5: CAST
+*/
+
+
 namespace Sintaxis_2
 {
     public class Lenguaje : Sintaxis
@@ -291,6 +300,16 @@ namespace Sintaxis_2
             {
                 Modifica(variable, resultado);
             }
+
+            if (ejecuta)
+            {
+                Variable.TiposDatos tipoDatoVariable = getTipo(variable);
+                Variable.TiposDatos tipoDatoResultado = getTipo(resultado);
+
+                //Console.WriteLine(variable + " = " + tipoDatoVariable);
+                //Console.WriteLine(resultado + " = " + tipoDatoResultado);
+                Modifica(variable, resultado);
+            }
             match(";");
         }
         //While -> while(Condicion) BloqueInstrucciones | Instruccion
@@ -391,7 +410,7 @@ namespace Sintaxis_2
             match("(");
             bool condicionalElse = Condicion();
             bool evaluacion = condicionalElse && ejecuta;
-            Console.WriteLine(evaluacion);
+            //Console.WriteLine(evaluacion);
             match(")");
             if (getContenido() == "{")
             {
@@ -437,9 +456,8 @@ namespace Sintaxis_2
                 {
                     throw new Error("de sintaxis, la variable <" + getContenido() + "> no está declarada", log, linea, columna);
                 }
-                String var = getContenido();
                 if (ejecuta)
-                    Console.Write(getValor(var));
+                    Console.Write(getValor(getContenido()));
 
                 match(Tipos.Identificador);
 
@@ -537,6 +555,8 @@ namespace Sintaxis_2
         //Factor -> numero | identificador | (Expresion)
         private void Factor()
         {
+            
+            Console.WriteLine(getContenido() + " " + float.Parse(getContenido()));
             if (getClasificacion() == Tipos.Numero)
             {
                 log.Write(" " + getContenido());
@@ -558,6 +578,34 @@ namespace Sintaxis_2
                 Expresion();
                 match(")");
             }
+        }
+
+        private Variable. TiposDatos getTipo(string nombre)
+        {
+            foreach (Variable v in lista)
+            {
+                if (v.getNombre() == nombre)
+                {
+                    return v.getTiposDatos ();
+                }
+            }
+            return Variable. TiposDatos. Char;
+        }
+        private Variable. TiposDatos getTipo(float resultado)
+        {
+            if (resultado % 1 == 0)
+            {
+                return Variable.TiposDatos.Float;
+            }
+            if(resultado < 256)
+            {
+                return Variable.TiposDatos.Char;
+            }
+            else if(resultado < 65536)
+            {
+                return Variable. TiposDatos. Int;
+            }
+            return Variable. TiposDatos.Float;
         }
     }
 }
