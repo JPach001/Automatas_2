@@ -6,6 +6,7 @@ char altura,i,j;
 
 void main() // Funcion principal
 {
+    
     printf("\nAltura: ");
     scanf("&i",&altura);
 

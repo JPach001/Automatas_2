@@ -1,8 +1,4 @@
 Autor: Julián Andrés Pacheco García
-22/09/2023 01:54:13 p. m.
-a =  1.5 = 1.5
------------------
-V a r i a b l e s
------------------
-a Char = 1.5
------------------
+03/10/2023 01:32:19 p. m.
+i =  1 = 1
+Error: de semantica, no se puede asignar un <Float> a un <Char> en la linea 13 columna 16
