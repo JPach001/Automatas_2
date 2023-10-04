@@ -104,7 +104,7 @@ namespace Sintaxis_2
             return 0;
         }
 
-        private Variable. TiposDatos getTipo(string nombre)
+        private Variable.TiposDatos getTipo(string nombre)
         {
             foreach (Variable v in lista)
             {
@@ -113,11 +113,11 @@ namespace Sintaxis_2
                     return v.getTiposDatos ();
                 }
             }
-            return Variable. TiposDatos. Char;
+            return Variable.TiposDatos.Char;
         }
-        private Variable. TiposDatos getTipo(float resultado)
+        private Variable.TiposDatos getTipo(float resultado)
         {
-            if (resultado % 1 == 0)
+            if (resultado % 1 != 0)
             {
                 return Variable.TiposDatos.Float;
             }
@@ -127,9 +127,9 @@ namespace Sintaxis_2
             }
             else if(resultado < 65536)
             {
-                return Variable. TiposDatos. Int;
+                return Variable.TiposDatos.Int;
             }
-            return Variable. TiposDatos.Float;
+            return Variable.TiposDatos.Float;
         }
 
         // Libreria -> #include<Identificador(.h)?>
@@ -191,13 +191,17 @@ namespace Sintaxis_2
             }
         }
         //BloqueInstrucciones -> { ListaInstrucciones ? }
-        private void BloqueInstrucciones(bool ejecuta)
+        private float BloqueInstrucciones(bool ejecuta)
         {
+            float valor = 0;
             match("{");
             if (getContenido() != "}")
             {
                 ListaInstrucciones(ejecuta);
+                String var = getContenido();
+                valor = getValor(var)+1;
             }
+            return valor;
             match("}");
         }
 
@@ -265,83 +269,60 @@ namespace Sintaxis_2
                 if (getContenido() == "++")
                 {
                     match("++");
-                    float V = getValor(variable);
-                    V++;
-                    Modifica(variable, V);
-                    stack.Push(V);
+                    resultado = getValor(variable) + 1;
                 }
                 else
                 {
                     match("--");
-                    float V = getValor(variable);
-                    V--;
-                    Modifica(variable, V);
-                    stack.Push(V);
+                    resultado = getValor(variable) - 1;
                 }
             }
             else if (getClasificacion() == Tipos.IncrementoFactor)
             {
+                resultado = getValor(variable);
                 if (getContenido() == "+=")
                 {
                     match("+=");
                     Expresion();
-                    float V = getValor(variable);
-                    V += stack.Pop();
-                    Modifica(variable, V);
-                    stack.Push(V);
-
+                    resultado += stack.Pop();
                 }
                 else if (getContenido() == "-=")
                 {
                     match("-=");
                     Expresion();
-                    float V = getValor(variable);
-                    V -= stack.Pop();
-                    Modifica(variable, V);
-                    stack.Push(V);
+                    resultado -= stack.Pop();
                 }
                 else if (getContenido() == "*=")
                 {
                     match("*=");
                     Expresion();
-                    float V = getValor(variable);
-                    V *= stack.Pop();
-                    Modifica(variable, V);
-                    stack.Push(V);
+                    resultado *= stack.Pop();
                 }
                 else if (getContenido() == "/=")
                 {
                     match("/=");
                     Expresion();
-                    float V = getValor(variable);
-                    V /= stack.Pop();
-                    Modifica(variable, V);
-                    stack.Push(V);
+                    resultado /= stack.Pop();
                 }
                 else if (getContenido() == "%=")
                 {
                     match("%=");
                     Expresion();
-                    float V = getValor(variable);
-                    V %= stack.Pop();
-                    Modifica(variable, V);
-                    stack.Push(V);
+                    resultado %= stack.Pop();
                 }
             }
-            //float resultado = stack.Pop();
             log.WriteLine(" = " + resultado);
-            if (ejecuta)
-            {
-                Modifica(variable, resultado);
-            }
-
             if (ejecuta)
             {
                 Variable.TiposDatos tipoDatoVariable = getTipo(variable);
                 Variable.TiposDatos tipoDatoResultado = getTipo(resultado);
 
-                //Console.WriteLine(variable + " = " + tipoDatoVariable);
-                //Console.WriteLine(resultado + " = " + tipoDatoResultado);
+                Console.WriteLine(variable + " = "+tipoDatoVariable);
+                Console.WriteLine(resultado + " = "+tipoDatoResultado);
+                Console.WriteLine("expresion = "+tipoDatoExpresion);
+
+                //Variable.TiposDatos tipoDatoMayor = 
+
                 if (tipoDatoVariable >= tipoDatoResultado)
                 {
                     Modifica(variable, resultado);
@@ -445,6 +426,8 @@ namespace Sintaxis_2
         //Incremento -> Identificador ++ | --
         private float Incremento(bool ejecuta)
         {
+            float valor = 0;
+            String var = getContenido();
             if (!Existe(getContenido()))
             {
                 throw new Error("de sintaxis, la variable <" + getContenido() + "> no está declarada", log, linea, columna);
@@ -453,12 +436,14 @@ namespace Sintaxis_2
             if (getContenido() == "++")
             {
                 match("++");
+                valor = getValor(var)+1;
             }
             else
             {
                 match("--");
+                valor = getValor(var)-1;
             }
-            return 0;
+            return valor;
         }
         //Condicion -> Expresion OperadorRelacional Expresion
         private bool Condicion()
@@ -638,11 +623,9 @@ namespace Sintaxis_2
         //Factor -> numero | identificador | (Expresion)
         private void Factor()
         {
-            Console.WriteLine(getContenido() + " " + float.Parse(getContenido()));
+            //Console.WriteLine(getContenido() + " " + float.Parse(getContenido()));
             if (getClasificacion() == Tipos.Numero)
             {
-                
-                
                 log.Write(" " + getContenido());
                 stack.Push(float.Parse(getContenido()));
                 if (tipoDatoExpresion < getTipo(float.Parse(getContenido())))
@@ -653,6 +636,9 @@ namespace Sintaxis_2
             }
             else if (getClasificacion() == Tipos.Identificador)
             {
+                bool huboCast = true;
+                Variable.TiposDatos tipoDatoCast = Variable.TiposDatos.Char;
+
                 if (!Existe(getContenido()))
                 {
                     throw new Error("de sintaxis, la variable <" + getContenido() + "> no está declarada", log, linea, columna);
@@ -662,6 +648,12 @@ namespace Sintaxis_2
                 if (tipoDatoExpresion < getTipo(getContenido()))
                 {
                     tipoDatoExpresion = getTipo(getContenido());
+                    huboCast = false;
+                }
+                else if (huboCast)
+                {
+                    tipoDatoExpresion = tipoDatoCast;
+                    stack.Push(castea(stack.Pop(),tipoDatoCast));
                 }
             }
             else
@@ -695,7 +687,12 @@ namespace Sintaxis_2
         }
     float castea(float resultado, Variable.TiposDatos tipoDato)
         {
-            return 0;
+            if(tipoDato == Variable.TiposDatos.Char)
+                resultado = resultado % 256;
+            else if(tipoDato == Variable.TiposDatos.Int)
+                resultado = resultado % 65536;
+
+            return resultado;
         }
     }
 }

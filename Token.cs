@@ -13,7 +13,7 @@ namespace Sintaxis_2
             OperadorRelacional, OperadorTermino, OperadorFactor,
             IncrementoTermino, IncrementoFactor, Cadena, Ternario,
             FinSentencia, OperadorLogico, Inicio, Fin, Caracter,
-            TipoDato, Zona, Condicion, Ciclo, /*tipoDatoExpresion*/
+            TipoDato, Zona, Condicion, Ciclo
         };
         private string Contenido;
         private Tipos Clasificacion;
