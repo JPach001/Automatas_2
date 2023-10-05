@@ -680,18 +680,25 @@ namespace Sintaxis_2
                     tipoDatoExpresion = tipoDatoCast;
                     stack.Push(castea(stack.Pop(), tipoDatoCast));
                 }
-                /*match("(");
-                Expresion();
-                match(")");*/
             }
         }
     float castea(float resultado, Variable.TiposDatos tipoDato)
         {
+            
             if(tipoDato == Variable.TiposDatos.Char)
-                resultado = resultado % 256;
-            else if(tipoDato == Variable.TiposDatos.Int)
-                resultado = resultado % 65536;
+            {   
+                if(resultado%1>0)
+                    resultado = (float)Math.Round(resultado);
 
+                resultado = resultado % 256;
+            }
+            else if(tipoDato == Variable.TiposDatos.Int)
+            {
+                if(resultado%1>0)
+                    resultado = (float)Math.Round(resultado);
+
+                resultado = resultado % 65536;
+            }
             return resultado;
         }
     }
