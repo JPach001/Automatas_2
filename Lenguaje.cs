@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-/*
+/*                      REQUERIMIENTOS PARCIAL 1
     Requerimiento 1: Mensajes del printf deben salir sin comillas
                      Incluir \n y \t como secuencias de escape
     Requerimiento 2: Agregar el % al PorFactor
@@ -15,9 +15,9 @@ using System.Threading.Tasks;
     Requerimiento 4: Implemenar la ejecución del ELSE
 */
 
-/*
+/*                      REQUERIMIENTOS PARCIAL 2
     Requerimiento 1: Implementar la ejecucion del while
-    Requerimiento 2: Implemenatr la ejecicion del do - whike
+    Requerimiento 2: Implemenatr la ejecicion del do - while
     Requerimiento 3: Implementar la ejecucion del for
     Requerimiento 4: Marcar errores semánticos
     Requerimiento 5: CAST
@@ -338,8 +338,8 @@ namespace Sintaxis_2
         private void While(bool ejecuta)
         {
             int principio = caracter;
-            int linInicio = linea;
-            
+            int lineaInicio = linea;
+
             match("while");
             match("(");
             
@@ -356,34 +356,41 @@ namespace Sintaxis_2
                     Instruccion(ejecuta);
                 
 
-                if (ejecuta)
-                {
-                    archivo.DiscardBufferedData();
-                    caracter = principio - var.Length -1;
-                    archivo.BaseStream.Seek(caracter, SeekOrigin.Begin);
-                    nextToken();
-                    linea = linInicio;
-                    caracter = principio;
-                }
+                
             } while (ejecuta);
         }
         //Do -> do BloqueInstrucciones | Instruccion while(Condicion)
         private void Do(bool ejecuta)
         {
+            int principio = caracter;
+            int lineaInicio = linea;
+
             match("do");
-            if (getContenido() == "{")
+            do
             {
-                BloqueInstrucciones(ejecuta);
-            }
-            else
-            {
-                Instruccion(ejecuta);
-            }
-            match("while");
-            match("(");
-            Condicion();
-            match(")");
-            match(";");
+                if (getContenido() == "{")
+                {
+                    BloqueInstrucciones(ejecuta);
+                }
+                else
+                {
+                    Instruccion(ejecuta);
+                }
+                match("while");
+                match("(");
+                ejecuta = Condicion() && ejecuta;
+                match(")");
+                match(";");
+
+                if (ejecuta)
+                {
+                    archivo.DiscardBufferedData();
+                    caracter = principio;
+                    archivo.BaseStream.Seek(caracter, SeekOrigin.Begin);
+                    nextToken();
+                    linea = lineaInicio;
+                }
+            } while (ejecuta);
         }
         //For -> for(Asignacion Condicion; Incremento) BloqueInstrucciones | Instruccion
         private void For(bool ejecuta)
@@ -416,6 +423,10 @@ namespace Sintaxis_2
                 ejecuta = Condicion() && ejecuta;
                 match(";");
                 resultado = Incremento(ejecuta);
+
+                Variable.TiposDatos tipoDatoVariable = getTipo(variable);
+                Variable.TiposDatos tipoDatoResultado = getTipo(resultado);
+
                 match(")");
                 if (getContenido() == "{")
                 {
@@ -427,16 +438,23 @@ namespace Sintaxis_2
                 }
                 if (ejecuta)
                 {
-                    Modifica(variable, resultado);
-                    archivo.DiscardBufferedData();
-                    caracter = inicia - variable.Length - 1;
-                    archivo.BaseStream.Seek(caracter, SeekOrigin.Begin);
-                    nextToken();
-                    linea = lineaInicio;
+
+                    if(tipoDatoResultado <= tipoDatoExpresion)
+                    {
+                        Modifica(variable, resultado);
+                        archivo.DiscardBufferedData();
+                        caracter = inicia - variable.Length - 1;
+                        archivo.BaseStream.Seek(caracter, SeekOrigin.Begin);
+                        nextToken();
+                        linea = lineaInicio;
+                    }
+                    else
+                    {
+                        throw new Error("de semantica, no se puede asignar un <"+tipoDatoResultado+"> a un <"+tipoDatoVariable+">", log, linea, columna);
+                    }
 
                 }
-            }
-            while (ejecuta);
+            } while (ejecuta);
 
         }
         //Incremento -> Identificador ++ | --
