@@ -321,8 +321,6 @@ namespace Sintaxis_2
                 //Console.WriteLine(resultado + " = "+tipoDatoResultado);
                 //Console.WriteLine("expresion = "+tipoDatoExpresion);
 
-                //Variable.TiposDatos tipoDatoMayor = 
-
                 if (tipoDatoVariable >= tipoDatoResultado)
                 {
                     Modifica(variable, resultado);
@@ -340,13 +338,13 @@ namespace Sintaxis_2
             int principio = caracter;
             int lineaInicio = linea;
 
-            match("while");
-            match("(");
-            
-            String var = getContenido();
+            String var;
+            var = getContenido();
 
             do
             {
+                match("while");
+                match("(");
                 ejecuta = Condicion() && ejecuta;
                 match(")");
 
@@ -355,8 +353,16 @@ namespace Sintaxis_2
                 else
                     Instruccion(ejecuta);
                 
+                if (ejecuta)
+                {
+                    archivo.DiscardBufferedData();
+                    caracter = principio - var.Length - 1;
+                    archivo.BaseStream.Seek(caracter, SeekOrigin.Begin);
+                    nextToken();
+                    linea = lineaInicio;
+                    caracter = principio;
+                }
 
-                
             } while (ejecuta);
         }
         //Do -> do BloqueInstrucciones | Instruccion while(Condicion)
@@ -398,18 +404,6 @@ namespace Sintaxis_2
             match("for");
             match("(");
             Asignacion(ejecuta);
-            /*Condicion();
-            match(";");
-            Incremento(ejecuta);
-            match(")");
-            if (getContenido() == "{")
-            {
-                BloqueInstrucciones(ejecuta);
-            }
-            else
-            {
-                Instruccion(ejecuta);
-            }*/
 
             int inicia = caracter;
             int lineaInicio = linea;
@@ -657,7 +651,6 @@ namespace Sintaxis_2
         //Factor -> numero | identificador | (Expresion)
         private void Factor()
         {
-            //Console.WriteLine(getContenido() + " " + float.Parse(getContenido()));
             if (getClasificacion() == Tipos.Numero)
             {
                 log.Write(" " + getContenido());
@@ -720,19 +713,10 @@ namespace Sintaxis_2
         {
             
             if(tipoDato == Variable.TiposDatos.Char)
-            {   
-                if(resultado%1>0)
-                    resultado = (float)Math.Round(resultado);
-
                 resultado = resultado % 256;
-            }
             else if(tipoDato == Variable.TiposDatos.Int)
-            {
-                if(resultado%1>0)
-                    resultado = (float)Math.Round(resultado);
-
                 resultado = resultado % 65536;
-            }
+
             return resultado;
         }
     }
