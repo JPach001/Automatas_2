@@ -201,8 +201,8 @@ namespace Sintaxis_2
                 String var = getContenido();
                 valor = getValor(var)+1;
             }
-            return valor;
             match("}");
+            return valor;
         }
 
         //ListaInstrucciones -> Instruccion ListaInstrucciones?
@@ -317,9 +317,9 @@ namespace Sintaxis_2
                 Variable.TiposDatos tipoDatoVariable = getTipo(variable);
                 Variable.TiposDatos tipoDatoResultado = getTipo(resultado);
 
-                Console.WriteLine(variable + " = "+tipoDatoVariable);
-                Console.WriteLine(resultado + " = "+tipoDatoResultado);
-                Console.WriteLine("expresion = "+tipoDatoExpresion);
+                //Console.WriteLine(variable + " = "+tipoDatoVariable);
+                //Console.WriteLine(resultado + " = "+tipoDatoResultado);
+                //Console.WriteLine("expresion = "+tipoDatoExpresion);
 
                 //Variable.TiposDatos tipoDatoMayor = 
 
@@ -337,19 +337,35 @@ namespace Sintaxis_2
         //While -> while(Condicion) BloqueInstrucciones | Instruccion
         private void While(bool ejecuta)
         {
+            int principio = caracter;
+            int linInicio = linea;
+            
             match("while");
             match("(");
-            Condicion();
-            match(")");
-            if (getContenido() == "{")
-            {
-                BloqueInstrucciones(ejecuta);
-            }
-            else
-            {
-                Instruccion(ejecuta);
-            }
+            
+            String var = getContenido();
 
+            do
+            {
+                ejecuta = Condicion() && ejecuta;
+                match(")");
+
+                if (getContenido() == "{")
+                    BloqueInstrucciones(ejecuta);
+                else
+                    Instruccion(ejecuta);
+                
+
+                if (ejecuta)
+                {
+                    archivo.DiscardBufferedData();
+                    caracter = principio - var.Length -1;
+                    archivo.BaseStream.Seek(caracter, SeekOrigin.Begin);
+                    nextToken();
+                    linea = linInicio;
+                    caracter = principio;
+                }
+            } while (ejecuta);
         }
         //Do -> do BloqueInstrucciones | Instruccion while(Condicion)
         private void Do(bool ejecuta)
