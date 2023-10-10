@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-/*                      REQUERIMIENTOS PARCIAL 1
+/*                      REQUERIMIENTOS UNIDAD 1
     Requerimiento 1: Mensajes del printf deben salir sin comillas
                      Incluir \n y \t como secuencias de escape
     Requerimiento 2: Agregar el % al PorFactor
@@ -15,12 +16,20 @@ using System.Threading.Tasks;
     Requerimiento 4: Implemenar la ejecución del ELSE
 */
 
-/*                      REQUERIMIENTOS PARCIAL 2
+/*                      REQUERIMIENTOS UNIDAD 2
     Requerimiento 1: Implementar la ejecucion del while
     Requerimiento 2: Implemenatr la ejecicion del do - while
     Requerimiento 3: Implementar la ejecucion del for
     Requerimiento 4: Marcar errores semánticos
     Requerimiento 5: CAST
+*/
+
+/*                      REQUERIMIENTOS UNIDAD 3
+    Requerimiento 1: Programar scanf
+    Requerimiento 2: Programar printf
+    Requerimiento 3: 
+    Requerimiento 4: 
+    Requerimiento 5: 
 */
 
 
@@ -47,6 +56,7 @@ namespace Sintaxis_2
         //Programa  -> Librerias? Variables? Main
         public void Programa()
         {
+            asm.WriteLine("ORG 100h");
             if (getContenido() == "#")
             {
                 Librerias();
@@ -57,6 +67,8 @@ namespace Sintaxis_2
             }
             Main(true);
             Imprime();
+
+            asm.WriteLine("RET");
         }
 
         private void Imprime()
@@ -64,9 +76,11 @@ namespace Sintaxis_2
             log.WriteLine("-----------------");
             log.WriteLine("V a r i a b l e s");
             log.WriteLine("-----------------");
+            asm.WriteLine("; V a r i a b l e s ;");
             foreach (Variable v in lista)
             {
                 log.WriteLine(v.getNombre() + " " + v.getTiposDatos() + " = " + v.getValor());
+                asm.WriteLine(v.getNombre() + " dw 0h");
             }
             log.WriteLine("-----------------");
         }
@@ -263,6 +277,7 @@ namespace Sintaxis_2
                 match("=");
                 Expresion();
                 resultado = stack.Pop();
+                asm.WriteLine("POP AX");
             }
             else if (getClasificacion() == Tipos.IncrementoTermino)
             {
@@ -285,30 +300,35 @@ namespace Sintaxis_2
                     match("+=");
                     Expresion();
                     resultado += stack.Pop();
+                    asm.WriteLine("POP AX");
                 }
                 else if (getContenido() == "-=")
                 {
                     match("-=");
                     Expresion();
                     resultado -= stack.Pop();
+                    asm.WriteLine("POP AX");
                 }
                 else if (getContenido() == "*=")
                 {
                     match("*=");
                     Expresion();
                     resultado *= stack.Pop();
+                    asm.WriteLine("POP AX");
                 }
                 else if (getContenido() == "/=")
                 {
                     match("/=");
                     Expresion();
                     resultado /= stack.Pop();
+                    asm.WriteLine("POP AX");
                 }
                 else if (getContenido() == "%=")
                 {
                     match("%=");
                     Expresion();
                     resultado %= stack.Pop();
+                    asm.WriteLine("POP AX");
                 }
             }
             log.WriteLine(" = " + resultado);
@@ -481,7 +501,9 @@ namespace Sintaxis_2
             match(Tipos.OperadorRelacional);
             Expresion();
             float R1 = stack.Pop();
+            asm.WriteLine("POP AX");
             float R2 = stack.Pop();
+            asm.WriteLine("POP AX");
 
             switch (operador)
             {
@@ -617,10 +639,20 @@ namespace Sintaxis_2
                 log.Write(" " + operador);
                 float R2 = stack.Pop();
                 float R1 = stack.Pop();
+                asm.WriteLine("POP AX");
+                asm.WriteLine("POP BX");
                 if (operador == "+")
+                {
                     stack.Push(R1 + R2);
+                    asm.WriteLine("ADD BX, AX");
+                    asm.WriteLine("PUSH BX");
+                }
                 else
+                {
                     stack.Push(R1 - R2);
+                    asm.WriteLine("SUB BX, AX");
+                    asm.WriteLine("PUSH BX");
+                }
             }
         }
         //Termino -> Factor PorFactor
@@ -640,12 +672,26 @@ namespace Sintaxis_2
                 log.Write(" " + operador);
                 float R2 = stack.Pop();
                 float R1 = stack.Pop();
+                asm.WriteLine("POP AX");
+                asm.WriteLine("POP BX");
                 if (operador == "*")
+                {
                     stack.Push(R1 * R2);
+                    asm.WriteLine("MUL BX");
+                    asm.WriteLine("PUSH AX");
+                }
                 else if (operador == "%")
-                    stack.Push(R1 % R2);
+                {
+                    stack.Push(R1 % R2); // residuo se almacena en DX
+                    asm.WriteLine("DIV AX,BX");
+                    asm.WriteLine("PUSH DX");
+                }
                 else
+                {
                     stack.Push(R1 / R2);
+                    asm.WriteLine("DIV AX,BX");
+                    asm.WriteLine("PUSH AX");
+                }
             }
         }
         //Factor -> numero | identificador | (Expresion)
@@ -654,6 +700,8 @@ namespace Sintaxis_2
             if (getClasificacion() == Tipos.Numero)
             {
                 log.Write(" " + getContenido());
+                asm.WriteLine("MOV AX, " + getContenido());
+                asm.WriteLine("PUSH AX");
                 stack.Push(float.Parse(getContenido()));
                 if (tipoDatoExpresion < getTipo(float.Parse(getContenido())))
                 {

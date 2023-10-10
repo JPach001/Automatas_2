@@ -1,4 +1,29 @@
 Autor: Julián Andrés Pacheco García
-05/10/2023 01:49:59 p. m.
-k =  10 = 10
-Error: de semantica, no se puede asignar un <Int> a un <Char> en la linea 9 columna 19
+05/10/2023 01:55:01 p. m.
+k =  1.5 = 1.5
+i =  1 = 1
+For: i
+j =  250 = 250
+For: j
+ 250 + 2 % 0 250 + 2 % 0j =  250 = 250
+For: j
+ 250 + 2 % 0i =  1 = 1
+j =  250 = 250
+ 250 + 2 % 0j =  = 251
+ 250 + 2 % 0j =  = 252
+i =  = 2
+j =  250 = 250
+ 250 + 2 % 0j =  = 252
+i =  = 3
+i =  1 = 1
+j =  250 = 250
+ 2 % 0j =  = 251
+ 250 +i =  = 2
+-----------------
+V a r i a b l e s
+-----------------
+altura Char = 1
+i Char = 2
+j Char = 251
+k Char = 2
+-----------------

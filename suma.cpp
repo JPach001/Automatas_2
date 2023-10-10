@@ -6,9 +6,12 @@ char altura,i,j,k;
 
 void main() // Funcion principal
 {
-    k = (int)(10);
-    k = 1.5;
-    k = (int)((char)(1.5));
+    
+
+    /*
+    //k = (int)(10);
+    //k = 1.5;
+    k = (char)(1.5);
 
     printf("\nAltura: ");
     scanf("&i",&altura);
@@ -57,5 +60,5 @@ void main() // Funcion principal
         i++;
         printf("\n");
     } while (i <= altura);
-
+    */
 }

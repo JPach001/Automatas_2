@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 using System.Reflection.PortableExecutable;
+using System.Runtime.CompilerServices;
 
 namespace Sintaxis_2
 {
@@ -58,18 +59,23 @@ namespace Sintaxis_2
         };
         protected StreamReader archivo;
         protected StreamWriter log;
-
+        protected StreamWriter asm;
         protected int linea;
         protected int columna;
         protected int caracter; 
+
         public Lexico()
         {
             DateTime myValue = DateTime.Now;
             linea = columna = caracter = 1;
             log = new StreamWriter("prueba.log");
+            asm = new StreamWriter("prueba.asm");
             log.WriteLine("Autor: Julián Andrés Pacheco García");
             log.WriteLine(myValue.ToShortDateString() + " " + myValue.ToLongTimeString());
+            asm.WriteLine("; Autor: Julián Andrés Pacheco García");
+            asm.WriteLine("; Fecha: 09/10/2023 1:20 p.m.");
             log.AutoFlush = true;
+            asm.AutoFlush = true;
             if (File.Exists("prueba.cpp"))
             {
                 archivo = new StreamReader("prueba.cpp");
@@ -84,9 +90,13 @@ namespace Sintaxis_2
             DateTime myValue = DateTime.Now;
             linea = columna = caracter = 1;
             log = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".log");
+            asm = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".asm");
             log.WriteLine("Autor: Julián Andrés Pacheco García");
             log.WriteLine(myValue.ToShortDateString() + " " + myValue.ToLongTimeString());
+            asm.WriteLine("; Autor: Julián Andrés Pacheco García");
+            asm.WriteLine("; Fecha: 09/10/2023 1:20 p.m.");
             log.AutoFlush = true;
+            asm.AutoFlush = true;
             if (Path.GetExtension(nombre) != ".cpp")
             {
                 throw new Error("El archivo " + nombre + " no tiene extension CPP", log, linea, columna);
