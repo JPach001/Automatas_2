@@ -18,7 +18,6 @@ C:\Users\Usuario Microsoft\Documents\Universidad\Semestre 5\Autómatas2\Sintáxi
 C:\Users\Usuario Microsoft\Documents\Universidad\Semestre 5\Autómatas2\Sintáxis_2\bin\Debug\net7.0\Sintáxis_2.runtimeconfig.json
 C:\Users\Usuario Microsoft\Documents\Universidad\Semestre 5\Autómatas2\Sintáxis_2\bin\Debug\net7.0\Sintáxis_2.dll
 C:\Users\Usuario Microsoft\Documents\Universidad\Semestre 5\Autómatas2\Sintáxis_2\bin\Debug\net7.0\Sintáxis_2.pdb
-C:\Users\Usuario Microsoft\Documents\Universidad\Semestre 5\Autómatas2\Sintáxis_2\obj\Debug\net7.0\Sintáxis_2.csproj.AssemblyReference.cache
 C:\Users\Usuario Microsoft\Documents\Universidad\Semestre 5\Autómatas2\Sintáxis_2\obj\Debug\net7.0\Sintáxis_2.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Usuario Microsoft\Documents\Universidad\Semestre 5\Autómatas2\Sintáxis_2\obj\Debug\net7.0\Sintáxis_2.AssemblyInfoInputs.cache
 C:\Users\Usuario Microsoft\Documents\Universidad\Semestre 5\Autómatas2\Sintáxis_2\obj\Debug\net7.0\Sintáxis_2.AssemblyInfo.cs

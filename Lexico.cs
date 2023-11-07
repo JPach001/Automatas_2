@@ -73,7 +73,7 @@ namespace Sintaxis_2
             log.WriteLine("Autor: Julián Andrés Pacheco García");
             log.WriteLine(myValue.ToShortDateString() + " " + myValue.ToLongTimeString());
             asm.WriteLine("; Autor: Julián Andrés Pacheco García");
-            asm.WriteLine("; Fecha: 09/10/2023 1:20 p.m.");
+            asm.WriteLine("; "+myValue.ToShortDateString() + " " + myValue.ToLongTimeString();
             log.AutoFlush = true;
             asm.AutoFlush = true;
             if (File.Exists("prueba.cpp"))
