@@ -6,14 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 /*
-    Requerimiento 1: Programar scanf 
-    Requerimiento 2: Programar printf
-    Requerimiento 3: Programar ++,--,+=,-=,*=,/=,%=
-    Requerimiento 4: Programar else
-    Requerimiento 5: Programar do para que gerenre una sola vez el codigo
-    Requerimiento 6: Programar while para que gerenre una sola vez el codigo
-    Requerimiento 7: Programar el for para que gerenre una sola vez el codigo
-    Requerimiento 8: Programar el CAST
 */
 
 namespace Sintaxis_2
