@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 /*
-
     Requerimiento 1: Programar scanf 
     Requerimiento 2: Programar printf
     Requerimiento 3: Programar ++,--,+=,-=,*=,/=,%=
