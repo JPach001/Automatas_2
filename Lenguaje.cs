@@ -22,7 +22,7 @@ namespace Sintaxis_2
     {
         List<Variable> lista;
         Stack<float> stack;
-        int contIf, contFor;
+        int contIf, contFor, contWhile, contDoWhile, contElse;
 
         Variable.TiposDatos tipoDatoExpresion;
         public Lenguaje()
@@ -30,14 +30,16 @@ namespace Sintaxis_2
             lista = new List<Variable>();
             stack = new Stack<float>();
             tipoDatoExpresion = Variable.TiposDatos.Char;
-            contIf = contFor = 1;
+            contIf = contFor = contWhile = contDoWhile = 1;
+            contElse = 0;
         }
         public Lenguaje(string nombre) : base(nombre)
         {
             lista = new List<Variable>();
             stack = new Stack<float>();
             tipoDatoExpresion = Variable.TiposDatos.Char;
-            contIf = contFor = 1;
+            contIf = contFor = contWhile = contDoWhile = 1;
+            contElse = 0;
         }
 
         //Programa  -> Librerias? Variables? Main
@@ -263,9 +265,11 @@ namespace Sintaxis_2
                 match("=");
                 Expresion(primeraVez);
                 resultado = stack.Pop();
-                asm.WriteLine("POP AX");
-                asm.WriteLine("; Asignacion "+variable);
-                asm.WriteLine("MOV "+variable+", AX");
+                //if (primeraVez){
+                    asm.WriteLine("POP AX");
+                    asm.WriteLine("; Asignacion "+variable);
+                    asm.WriteLine("MOV "+variable+", AX");
+                //}
             }
             else if (getClasificacion() == Tipos.IncrementoTermino)
             {
@@ -274,12 +278,22 @@ namespace Sintaxis_2
                     match("++");
                     // INC
                     resultado = getValor(variable) + 1;
+                    //if(primeraVez){
+                        asm.WriteLine("MOV AX, " + variable);
+                        asm.WriteLine("INC AX");
+                        asm.WriteLine("MOV " + variable + ", AX");
+                    //}
                 }
                 else
                 {
                     match("--");
                     // DEC
                     resultado = getValor(variable) - 1;
+                    //if(primeraVez){
+                        asm.WriteLine("MOV AX, " + variable);
+                        asm.WriteLine("DEC AX");
+                        asm.WriteLine("MOV " + variable + ", AX");
+                    //}
                 }
             }
             else if (getClasificacion() == Tipos.IncrementoFactor)
@@ -290,21 +304,45 @@ namespace Sintaxis_2
                     match("+=");
                     Expresion(primeraVez);
                     resultado += stack.Pop();
-                    asm.WriteLine("POP AX");
+                    //if(primeraVez){
+                        asm.WriteLine("POP AX");
+                    //}
+                    resultado += getValor(variable);
+                    //if(primeraVez){
+                        asm.WriteLine("MOV BX, " + variable);
+                        asm.WriteLine("ADD AX, BX");
+                        asm.WriteLine("MOV " + variable + ", AX");
+                    //}
                 }
                 else if (getContenido() == "-=")
                 {
                     match("-=");
                     Expresion(primeraVez);
                     resultado -= stack.Pop();
-                    asm.WriteLine("POP AX");
+                    //if (primeraVez){
+                        asm.WriteLine("POP AX");
+                    //}
+                    resultado = getValor(variable)-resultado;
+                    //if (primeraVez){
+                        asm.WriteLine("MOV BX, " + variable);
+                        asm.WriteLine("SUB BX, AX");
+                        asm.WriteLine("MOV " + variable + ", BX");
+                    //}     
                 }
                 else if (getContenido() == "*=")
                 {
                     match("*=");
                     Expresion(primeraVez);
                     resultado *= stack.Pop();
-                    asm.WriteLine("POP AX");
+                    //if(primeraVez){
+                        asm.WriteLine("POP AX");
+                    //}
+                    resultado *= getValor(variable);
+                    //if (primeraVez){
+                        asm.WriteLine("MOV BX, " + variable);
+                        asm.WriteLine("IMUL BX");
+                        asm.WriteLine("MOV " + variable + ", AX");
+                    //}
                 }
                 else if (getContenido() == "/=")
                 {
@@ -352,6 +390,9 @@ namespace Sintaxis_2
         {
             int inicia = caracter;
             int lineaInicio = linea;
+            string etiquetaInicio = "InicioWhile" + contWhile;
+            string etiquetaFin = "FinWhile" + contWhile++;
+
 
             log.WriteLine("while: ");
             do
@@ -385,6 +426,9 @@ namespace Sintaxis_2
             int inicia = caracter;
             int lineaInicio = linea;
 
+            string etiquetaInicio = "InicioDoWhile" + contDoWhile;
+            string etiquetaFin = "FinDoWhile" + contDoWhile++;
+            
             log.WriteLine("do: ");
 
             do

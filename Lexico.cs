@@ -115,6 +115,7 @@ namespace Sintaxis_2
         {
             archivo.Close();
             log.Close();
+            asm.Close();
         }
         private int Columna(char t)
         {
