@@ -439,7 +439,7 @@ namespace Sintaxis_2
             int lineaInicio = linea;
             string variable = getContenido(); 
 
-            log.WriteLine("do: ");
+            log.WriteLine("Do: ");
 
             if (primeraVez)
                 asm.WriteLine(etiquetaInicio + ":");
@@ -472,7 +472,7 @@ namespace Sintaxis_2
                     nextToken();
                     linea = lineaInicio;
                 }
-                else if (primeraVez)
+                if (primeraVez)
                 {
                     asm.WriteLine("JMP " + etiquetaInicio);
                     asm.WriteLine(etiquetaFin + ":");
@@ -886,6 +886,7 @@ namespace Sintaxis_2
             if (getClasificacion() == Tipos.Numero)
             {
                 log.Write(" " + getContenido());
+
                 if (primeraVez)
                 {
                     asm.WriteLine("MOV AX, " + getContenido());
@@ -939,8 +940,6 @@ namespace Sintaxis_2
                 {
                     tipoDatoExpresion = tipoDatoCast;
                     stack.Push(castea(stack.Pop(), tipoDatoCast, primeraVez));
-                    if (primeraVez)
-                        asm.WriteLine("POP AX");
                 }
             }
         }
@@ -953,9 +952,9 @@ namespace Sintaxis_2
                 asm.WriteLine("MOV BX, 256");
                 resultado = (char)resultado % 256;
                 asm.WriteLine("DIV BX");
-                asm.WriteLine("MOV AX,DX ");
+                asm.WriteLine("MOV AX, DX");
                 asm.WriteLine("PUSH AX");
-                asm.WriteLine("XOR DX , DX");
+                asm.WriteLine("XOR DX, DX");
             }
             else if (tipoDato == Variable.TiposDatos.Int)
             {

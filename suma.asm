@@ -1,22 +1,22 @@
 ; Autor: Julián Andrés Pacheco García
-; 12/11/2023 11:54:52 p. m.
+; 13/11/2023 11:45:17 a. m.
 include 'emu8086.inc'
 org 100h
 MOV AX, 258
 PUSH AX
 POP AX
-;Asignacion a
+; Asignacion a
 MOV a, AX
 MOV AX, a
 PUSH AX
 MOV AX, 258
 MOV BX, 256
 DIV BX
-MOV AX,DX 
+MOV AX, DX
 PUSH AX
-XOR DX , DX
+XOR DX, DX
 POP AX
-;Asignacion a
+; Asignacion a
 MOV a, AX
 MOV AX, 8
 PUSH AX
@@ -25,18 +25,18 @@ ADD  a ,AX
 MOV AX, 10
 PUSH AX
 POP BX
-MOV BX,a
+MOV BX, a
 MUL BX
 MOV a ,AX
 MOV AX, 100
 PUSH AX
 POP BX
-MOV BX,a
+MOV BX, a
 DIV BX
-MOV a ,AX
+MOV a, AX
 print '' 
 print 'Valor Casteado de a: '
-MOV AX,a
+MOV AX, a
 CALL print_num
 PRINTN ''
 print '' 
@@ -45,7 +45,7 @@ printn ' '
 print 'Digite el valor de altura: '
 Call scan_num
 MOV altura, CX
-MOV AX,altura
+MOV AX, altura
 PRINTN ''
 print '' 
 print ''
@@ -57,7 +57,7 @@ print ''
 MOV AX, 1
 PUSH AX
 POP AX
-;Asignacion i
+; Asignacion i
 MOV i, AX
 InicioFor1:
 MOV AX, i
@@ -66,7 +66,7 @@ MOV AX, altura
 PUSH AX
 POP BX
 POP AX
-CMP AX,BX
+CMP AX, BX
 JA FinFor1
 print '' 
 print '	'
@@ -74,7 +74,7 @@ print '	'
 MOV AX, 250
 PUSH AX
 POP AX
-;Asignacion j
+; Asignacion j
 MOV j, AX
 InicioFor2:
 MOV AX, j
@@ -85,11 +85,11 @@ MOV AX, i
 PUSH AX
 POP BX
 POP AX
-ADD   AX, BX
- PUSH AX
+ADD AX, BX
+PUSH AX
 POP BX
 POP AX
-CMP AX,BX
+CMP AX, BX
 JAE FinFor2
 ; if: 1
 MOV AX, j
@@ -99,12 +99,12 @@ PUSH AX
 POP BX
 POP AX
 DIV  BX
- PUSH DX
+PUSH DX
 MOV AX, 0
 PUSH AX
 POP BX
 POP AX
-CMP AX,BX
+CMP AX, BX
 JNE Eif1
 print '' 
 print '-'
@@ -136,7 +136,7 @@ print ''
 MOV AX, 1
 PUSH AX
 POP AX
-;Asignacion i
+; Asignacion i
 MOV i, AX
 ; While: 1
 InicioWhile1:
@@ -146,14 +146,14 @@ MOV AX, altura
 PUSH AX
 POP BX
 POP AX
-CMP AX,BX
+CMP AX, BX
 JA FinWhile1
 print '' 
 print '	'
 MOV AX, 250
 PUSH AX
 POP AX
-;Asignacion j
+; Asignacion j
 MOV j, AX
 ; While: 2
 InicioWhile2:
@@ -165,11 +165,11 @@ MOV AX, i
 PUSH AX
 POP BX
 POP AX
-ADD   AX, BX
- PUSH AX
+ADD AX, BX
+PUSH AX
 POP BX
 POP AX
-CMP AX,BX
+CMP AX, BX
 JAE FinWhile2
 ; if: 22
 MOV AX, j
@@ -179,12 +179,12 @@ PUSH AX
 POP BX
 POP AX
 DIV  BX
- PUSH DX
+PUSH DX
 MOV AX, 0
 PUSH AX
 POP BX
 POP AX
-CMP AX,BX
+CMP AX, BX
 JNE Eif22
 print '' 
 print '-'
@@ -194,10 +194,10 @@ Eif22:
 print '' 
 print '+'
 Eelse24:
-INC  j
+INC j
 JMP InicioWhile2
 FinWhile2:
-INC  i
+INC i
 print '' 
 print ''
 printn ' ' 
@@ -216,17 +216,17 @@ print ''
 MOV AX, 1
 PUSH AX
 POP AX
-;Asignacion i
+; Asignacion i
 MOV i, AX
-InicioDo1:
+InicioDoWhile1:
 print '' 
 print '	'
 MOV AX, 250
 PUSH AX
 POP AX
-;Asignacion j
+; Asignacion j
 MOV j, AX
-InicioDo2:
+InicioDoWhile2:
 ; if: 43
 MOV AX, j
 PUSH AX
@@ -235,12 +235,12 @@ PUSH AX
 POP BX
 POP AX
 DIV  BX
- PUSH DX
+PUSH DX
 MOV AX, 0
 PUSH AX
 POP BX
 POP AX
-CMP AX,BX
+CMP AX, BX
 JNE Eif43
 print '' 
 print '-'
@@ -250,7 +250,7 @@ Eif43:
 print '' 
 print '+'
 Eelse45:
-INC  j
+INC j
 MOV AX, j
 PUSH AX
 MOV AX, 250
@@ -259,15 +259,15 @@ MOV AX, i
 PUSH AX
 POP BX
 POP AX
-ADD   AX, BX
- PUSH AX
+ADD AX, BX
+PUSH AX
 POP BX
 POP AX
-CMP AX,BX
-JAE FinDo2
-JMP InicioDo2
-FinDo2:
-INC  i
+CMP AX, BX
+JAE FinDoWhile2
+JMP InicioDoWhile2
+FinDoWhile2:
+INC i
 print '' 
 print ''
 printn ' ' 
@@ -278,10 +278,10 @@ MOV AX, altura
 PUSH AX
 POP BX
 POP AX
-CMP AX,BX
-JA FinDo1
-JMP InicioDo1
-FinDo1:
+CMP AX, BX
+JA FinDoWhile1
+JMP InicioDoWhile1
+FinDoWhile1:
 int 20h
 RET
 define_scan_num
