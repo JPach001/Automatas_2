@@ -2,6 +2,1046 @@
 ; Fecha: 09/10/2023 1:20 p.m.
 include 'emu8086.inc'
 org 100h
+MOV AX, 258
+PUSH AX
+POP AX
+; Asignacion a
+MOV a, AX
+MOV AX, a
+PUSH AX
+MOV BX, 256
+DIV BX
+PUSH DX
+POP AX
+POP AX
+; Asignacion a
+MOV a, AX
+MOV AX, 8
+PUSH AX
+POP AX
+MOV BX, a
+ADD AX, BX
+MOV a, AX
+MOV AX, 10
+PUSH AX
+POP AX
+MOV BX, a
+IMUL BX
+MOV a, AX
+MOV AX, 100
+PUSH AX
+POP AX
+MOV BX, AX
+MOV AX, a
+IDIV BX
+MOV a, AX
+print 'Valor Casteado de a: '
+MOV AX, a
+call print_num
+print '
+Digite el valor de altura: '
+call scan_num
+MOV altura, CX
+print '
+for:
+'
+; For: 1
+MOV AX, 1
+PUSH AX
+POP AX
+; Asignacion i
+MOV i, AX
+InicioFor1:
+MOV AX, i
+PUSH AX
+MOV AX, altura
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JA FinFor1
+print '\t'
+; For: 2
+MOV AX, 250
+PUSH AX
+POP AX
+; Asignacion j
+MOV j, AX
+InicioFor2:
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE FinFor2
+; if: 1
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif1
+print '-'
+print '+'
+: else: 1
+JMP Eelse1
+Eif1:
+Eelse1:
+INC j
+JMP InicioFor2
+FinFor2:
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif3
+print '-'
+print '+'
+print '
+'
+INC i
+JMP InicioFor1
+FinFor1:
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif4
+print '-'
+print '+'
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif5
+print '-'
+print '+'
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif6
+print '-'
+print '+'
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif7
+print '-'
+print '+'
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif8
+print '-'
+print '+'
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif9
+print '-'
+print '+'
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif10
+print '-'
+print '+'
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif11
+print '-'
+print '+'
+print '
+while:
+'
+MOV AX, 1
+PUSH AX
+POP AX
+; Asignacion i
+MOV i, AX
+; While1
+InicioWhile1:
+MOV AX, i
+PUSH AX
+MOV AX, altura
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JA 
+print '\t'
+MOV AX, 250
+PUSH AX
+POP AX
+; Asignacion j
+MOV j, AX
+; While2
+InicioWhile2:
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 12
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif12
+print '-'
+print '+'
+: else: 2
+JMP Eelse2
+Eif12:
+Eelse2:
+MOV AX, j
+INC AX
+MOV j, AX
+JMP InicioWhile2 
+FinWhile2:
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 14
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif14
+print '-'
+print '+'
+: else: 3
+JMP Eelse3
+Eif14:
+Eelse3:
+MOV AX, j
+INC AX
+MOV j, AX
+MOV AX, i
+INC AX
+MOV i, AX
+print '
+'
+JMP InicioWhile1 
+FinWhile1:
+MOV AX, i
+PUSH AX
+MOV AX, altura
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JA 
+print '\t'
+MOV AX, 250
+PUSH AX
+POP AX
+; Asignacion j
+MOV j, AX
+; While3
+InicioWhile3:
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 16
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif16
+print '-'
+print '+'
+: else: 4
+JMP Eelse4
+Eif16:
+Eelse4:
+MOV AX, j
+INC AX
+MOV j, AX
+JMP InicioWhile3 
+FinWhile3:
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 18
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif18
+print '-'
+print '+'
+: else: 5
+JMP Eelse5
+Eif18:
+Eelse5:
+MOV AX, j
+INC AX
+MOV j, AX
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 20
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif20
+print '-'
+print '+'
+: else: 6
+JMP Eelse6
+Eif20:
+Eelse6:
+MOV AX, j
+INC AX
+MOV j, AX
+MOV AX, i
+INC AX
+MOV i, AX
+print '
+'
+MOV AX, i
+PUSH AX
+MOV AX, altura
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JA 
+print '\t'
+MOV AX, 250
+PUSH AX
+POP AX
+; Asignacion j
+MOV j, AX
+; While4
+InicioWhile4:
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 22
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif22
+print '-'
+print '+'
+: else: 7
+JMP Eelse7
+Eif22:
+Eelse7:
+MOV AX, j
+INC AX
+MOV j, AX
+JMP InicioWhile4 
+FinWhile4:
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 24
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif24
+print '-'
+print '+'
+: else: 8
+JMP Eelse8
+Eif24:
+Eelse8:
+MOV AX, j
+INC AX
+MOV j, AX
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 26
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif26
+print '-'
+print '+'
+: else: 9
+JMP Eelse9
+Eif26:
+Eelse9:
+MOV AX, j
+INC AX
+MOV j, AX
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 28
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif28
+print '-'
+print '+'
+: else: 10
+JMP Eelse10
+Eif28:
+Eelse10:
+MOV AX, j
+INC AX
+MOV j, AX
+MOV AX, i
+INC AX
+MOV i, AX
+print '
+'
+MOV AX, i
+PUSH AX
+MOV AX, altura
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JA 
+print '\t'
+MOV AX, 250
+PUSH AX
+POP AX
+; Asignacion j
+MOV j, AX
+; While5
+InicioWhile5:
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 30
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif30
+print '-'
+print '+'
+: else: 11
+JMP Eelse11
+Eif30:
+Eelse11:
+MOV AX, j
+INC AX
+MOV j, AX
+JMP InicioWhile5 
+FinWhile5:
+MOV AX, i
+INC AX
+MOV i, AX
+print '
+'
+print '
+do:
+'
+MOV AX, 1
+PUSH AX
+POP AX
+; Asignacion i
+MOV i, AX
+; Do-While 6
+InicioDoWhile1:
+print '\t'
+MOV AX, 250
+PUSH AX
+POP AX
+; Asignacion j
+MOV j, AX
+; Do-While 6
+InicioDoWhile2:
+; if: 32
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif32
+print '-'
+print '+'
+: else: 12
+JMP Eelse12
+Eif32:
+Eelse12:
+MOV AX, j
+INC AX
+MOV j, AX
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+JMP InicioDoWhile2
+FinDoWhile2:
+MOV AX, i
+INC AX
+MOV i, AX
+print '
+'
+MOV AX, i
+PUSH AX
+MOV AX, altura
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JA 
+print '\t'
+MOV AX, 250
+PUSH AX
+POP AX
+; Asignacion j
+MOV j, AX
+; Do-While 6
+InicioDoWhile3:
+; if: 34
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif34
+print '-'
+print '+'
+: else: 13
+JMP Eelse13
+Eif34:
+Eelse13:
+MOV AX, j
+INC AX
+MOV j, AX
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 36
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif36
+print '-'
+print '+'
+: else: 14
+JMP Eelse14
+Eif36:
+Eelse14:
+MOV AX, j
+INC AX
+MOV j, AX
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+MOV AX, i
+INC AX
+MOV i, AX
+print '
+'
+MOV AX, i
+PUSH AX
+MOV AX, altura
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JA 
+print '\t'
+MOV AX, 250
+PUSH AX
+POP AX
+; Asignacion j
+MOV j, AX
+; Do-While 6
+InicioDoWhile4:
+; if: 38
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif38
+print '-'
+print '+'
+: else: 15
+JMP Eelse15
+Eif38:
+Eelse15:
+MOV AX, j
+INC AX
+MOV j, AX
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 40
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif40
+print '-'
+print '+'
+: else: 16
+JMP Eelse16
+Eif40:
+Eelse16:
+MOV AX, j
+INC AX
+MOV j, AX
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+; if: 42
+MOV AX, j
+PUSH AX
+MOV AX, 2
+PUSH AX
+POP BX
+POP AX
+DIV  BX
+PUSH DX
+MOV AX, 0
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JNE Eif42
+print '-'
+print '+'
+: else: 17
+JMP Eelse17
+Eif42:
+Eelse17:
+MOV AX, j
+INC AX
+MOV j, AX
+MOV AX, j
+PUSH AX
+MOV AX, 250
+PUSH AX
+MOV AX, i
+PUSH AX
+POP BX
+POP AX
+ADD AX, BX
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JAE 
+MOV AX, i
+INC AX
+MOV i, AX
+print '
+'
+MOV AX, i
+PUSH AX
+MOV AX, altura
+PUSH AX
+POP BX
+POP AX
+CMP AX, BX
+JA 
 int 20h
 RET
 define_scan_num
@@ -12,4 +1052,6 @@ altura dw 0h
 i dw 0h
 j dw 0h
 k dw 0h
+a dw 0h
+b dw 0h
 END
